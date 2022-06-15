@@ -15,13 +15,6 @@ const nums = Array.from(Array(10)).map((e, i) => i + 48);
 const libraryNums = nums.map((i) => String.fromCharCode(i));
 const librarySpecialChar = Array.from("!@#$%^&*()");
 
-// console.log(libraryLowerAlpha);
-// console.log(libraryNums);
-// console.log(librarySpecialChar);
-// console.log(libraryUpperAlpha);
-
-// var lib = libraryLowerAlpha.concat(libraryNums, librarySpecialChar, libraryUpperAlpha);
-// console.log(lib);
 /**
  * Global Variables
  **************************************************************************************************/
@@ -148,6 +141,21 @@ function generatePassword() {
     includeNumeric,
     includeSpecialChar
   );
+
+  // console.log(charLibrary);
+  var password = [];
+  // console.log(passLen);
+  // use Math library random number gnerator to generate number between 0 and 1
+  // to get an index into the character library array to add to the password
+  for (let c = 0; c < passLen; c++) {
+    var randomIdx = Math.floor(Math.random() * charLibrary.length);
+
+    // console.log(randomIdx);
+    password.push(charLibrary[randomIdx]);
+  }
+  // console.log(password);
+  password = password.join("");
+  return password;
 }
 
 // Write password to the #password input
