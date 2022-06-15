@@ -5,6 +5,9 @@
 const alpha = Array.from(Array(26)).map((e, i) => i + 65);
 const upperAlpha = alpha.map((i) => String.fromCharCode(i));
 const lowerAlpha = upperAlpha.map((letter) => String.fromCharCode(letter.charCodeAt(0) + 32));
+const nums = Array.from(Array(10)).map((e, i) => i);
+const specialChar = Array.from("!@#$%^&*()");
+
 
 /**
  * Global Variables
