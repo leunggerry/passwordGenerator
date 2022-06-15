@@ -7,6 +7,9 @@ This is a password generator application. A user will be asked to be given the l
  * Numbers
  * Special Characters ex. (!@#$%^&*())
 
+## Web Application URL
+https://leunggerry.github.io/passwordGenerator/
+
 ## Screen Shots
 
 ### Step 1: Start Page
