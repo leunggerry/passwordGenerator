@@ -23,11 +23,6 @@ const librarySpecialChar = Array.from("!@#$%^&*()");
  * Function Defintions
  **************************************************************************************************/
 
-/**
- *
- * @returns
- */
-
 // getLength()
 // get user password length
 function getLength() {
@@ -36,10 +31,8 @@ function getLength() {
       "Please choose the length of your password (choose between 8 characters and 128 characters):"
     )
   );
-
   // if password is less than 8 chars or greater than 128
   // alert the user to enter a valid input
-  console.log(typeof length);
   if (typeof length != "number" || length < 8 || length > 128) {
     window.alert(length + " is an invalid password length. Please choose again.");
     getLength();
@@ -68,6 +61,7 @@ function getLowerCase() {
 }
 
 // getNumeric()
+// Ask if the user want numerical values
 function getNumeric() {
   var isNumeric = window.confirm(
     "Do you want numerals(0-9) in your password? (Please click Ok(Yes)/Cancel(No))"
@@ -86,6 +80,13 @@ function getSpecialChar() {
   return isSpecChar;
 }
 
+// generateCharacterLibrary()
+// Based on the inputs of:
+//    - isLowCase
+//    - isUpperCase
+//    - isNumeric
+//    - isSpecialCharacters
+// Generate an array of character lists to create the password with and return the library
 function generateCharacterLibrary(isLowCase, isUpperCase, isNumeric, isSpecialCharacters) {
   var charLibrary = [];
 
@@ -142,9 +143,7 @@ function generatePassword() {
     includeSpecialChar
   );
 
-  // console.log(charLibrary);
   var password = [];
-  // console.log(passLen);
   // use Math library random number gnerator to generate number between 0 and 1
   // to get an index into the character library array to add to the password
   for (let c = 0; c < passLen; c++) {
@@ -153,7 +152,7 @@ function generatePassword() {
     // console.log(randomIdx);
     password.push(charLibrary[randomIdx]);
   }
-  // console.log(password);
+
   password = password.join("");
   return password;
 }
