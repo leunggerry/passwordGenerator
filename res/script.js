@@ -1,6 +1,14 @@
 /**
+ * Global Constants
+ **************************************************************************************************/
+//define upper and lower case alphabet
+const alpha = Array.from(Array(26)).map((e, i) => i + 65);
+const upperAlpha = alpha.map((i) => String.fromCharCode(i));
+const lowerAlpha = upperAlpha.map((letter) => String.fromCharCode(letter.charCodeAt(0) + 32));
+
+/**
  * Global Variables
- * ************************************************************************************************/
+ **************************************************************************************************/
 
 var passLen;
 var includeUpCase;
@@ -145,6 +153,8 @@ function generatePassword() {
       generatePassword();
     }
   }
+
+  // generate
 }
 
 // Write password to the #password input
