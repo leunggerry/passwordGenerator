@@ -2,22 +2,29 @@
  * Global Constants
  **************************************************************************************************/
 //define upper and lower case alphabet
+// create array from of 26 entries from 65-90 (ASCII code for capital letters)
+// convert the Decimal to the character representation
 const alpha = Array.from(Array(26)).map((e, i) => i + 65);
-const upperAlpha = alpha.map((i) => String.fromCharCode(i));
-const lowerAlpha = upperAlpha.map((letter) => String.fromCharCode(letter.charCodeAt(0) + 32));
-const nums = Array.from(Array(10)).map((e, i) => i);
-const specialChar = Array.from("!@#$%^&*()");
+const libraryUpperAlpha = alpha.map((i) => String.fromCharCode(i));
+const libraryLowerAlpha = libraryUpperAlpha.map((letter) =>
+  String.fromCharCode(letter.charCodeAt(0) + 32)
+);
+//generate array from 0-9
+//convert array to string array
+const nums = Array.from(Array(10)).map((e, i) => i + 48);
+const libraryNums = nums.map((i) => String.fromCharCode(i));
+const librarySpecialChar = Array.from("!@#$%^&*()");
 
+// console.log(libraryLowerAlpha);
+// console.log(libraryNums);
+// console.log(librarySpecialChar);
+// console.log(libraryUpperAlpha);
 
+// var lib = libraryLowerAlpha.concat(libraryNums, librarySpecialChar, libraryUpperAlpha);
+// console.log(lib);
 /**
  * Global Variables
  **************************************************************************************************/
-
-var passLen;
-var includeUpCase;
-var includeLowCase;
-var includeNumeric;
-var includeSpecialChar;
 
 /**
  * Function Defintions
@@ -31,8 +38,10 @@ var includeSpecialChar;
 // getLength()
 // get user password length
 function getLength() {
-  var length = window.prompt(
-    "Please choose the length of your password (choose between 8 characters and 128 characters):"
+  var length = parseInt(
+    window.prompt(
+      "Please choose the length of your password (choose between 8 characters and 128 characters):"
+    )
   );
 
   // if password is less than 8 chars or greater than 128
@@ -48,97 +57,71 @@ function getLength() {
 // getUpperCase()
 // Ask if user wants upper case letters in password
 function getUpperCase() {
-  var isUpper = window.prompt(
-    "Do you want upper case letters in your password? (Please enter Yes/Y/No/N)"
+  var isUpper = window.confirm(
+    "Do you want upper case letters in your password? (Please click Ok(Yes)/Cancel(No))"
   );
 
-  // if it is Not one of Yes/Y/No/N then ask the user for a valid input
-  if (isUpper !== "Yes" && isUpper !== "Y" && isUpper !== "No" && isUpper !== "N") {
-    window.alert(isUpper + " is and invalid input. Please enter a valid input.");
-    getUpperCase();
-  }
-
-  // Return true if upperCase is included otherwise false
-  if (isUpper === "Yes" || isUpper === "Y") {
-    return true;
-  } else {
-    return false;
-  }
+  return isUpper;
 }
 
 // getLowerCase()
 // Ask if user wants lower case letters
 function getLowerCase() {
-  var isLower = window.prompt(
-    "Do you want lower case letters in your password? (Please enter Yes/Y/No/N)"
+  var isLower = window.confirm(
+    "Do you want lower case letters in your password? (Please click Ok(Yes)/Cancel(No))"
   );
 
-  // Validate user input
-  // if it is Not one of Yes/Y/No/N then ask the user for a valid input
-  if (isLower !== "Yes" && isLower !== "Y" && isLower !== "No" && isLower !== "N") {
-    window.alert(isLower + " is and invalid input. Please enter a valid input.");
-    getLowerCase();
-  }
-
-  // Return true if lowerCase is included otherwise false
-  if (isLower === "Yes" || isLower === "Y") {
-    return true;
-  } else {
-    return false;
-  }
+  return isLower;
 }
 
 // getNumeric()
 function getNumeric() {
-  var isNumeric = window.prompt(
-    "Do you want numerals(0-9) in your password? (Please enter Yes/Y/No/N)"
+  var isNumeric = window.confirm(
+    "Do you want numerals(0-9) in your password? (Please click Ok(Yes)/Cancel(No))"
   );
 
-  // Validate user input
-  // if it is Not one of Yes/Y/No/N then ask the user for a valid input
-  if (isNumeric !== "Yes" && isNumeric !== "Y" && isNumeric !== "No" && isNumeric !== "N") {
-    window.alert(isNumeric + " is and invalid input. Please enter a valid input.");
-    getNumeric();
-  }
-
-  // Return true if numerals are included otherwise false
-  if (isNumeric === "Yes" || isNumeric === "Y") {
-    return true;
-  } else {
-    return false;
-  }
+  return isNumeric;
 }
 
 // getSpecialChar()
 // Ask if the user wants special characters
 function getSpecialChar() {
-  var isSpecChar = window.prompt(
-    "Do you want special characters(!@#$%^&) in your password? (Please enter Yes/Y/No/N)"
+  var isSpecChar = window.confirm(
+    "Do you want special characters(!@#$%^&*()) in your password? (Please enter click Ok(Yes)/Cancel(No))"
   );
 
-  // Validate user input
-  // if it is Not one of Yes/Y/No/N then ask the user for a valid input
-  if (isSpecChar !== "Yes" && isSpecChar !== "Y" && isSpecChar !== "No" && isSpecChar !== "N") {
-    window.alert(isSpecChar + " is and invalid input. Please enter a valid input.");
-    getSpecialChar();
-  }
+  return isSpecChar;
+}
 
-  // Return true if special characters are included otherwise return false
-  if (isSpecChar === "Yes" || isSpecChar === "Y") {
-    return true;
-  } else {
-    return false;
+function generateCharacterLibrary(isLowCase, isUpperCase, isNumeric, isSpecialCharacters) {
+  var charLibrary = [];
+
+  // if lower case is include add lowCase to the library
+  if (isLowCase) {
+    // console.log("add low case");
+    charLibrary = charLibrary.concat(libraryLowerAlpha);
   }
+  if (isUpperCase) {
+    // console.log("add up case");
+    charLibrary = charLibrary.concat(libraryUpperAlpha);
+  }
+  if (isNumeric) {
+    // console.log("add nums");
+    charLibrary = charLibrary.concat(libraryNums);
+  }
+  if (isSpecialCharacters) {
+    // console.log("add special char");
+    charLibrary = charLibrary.concat(librarySpecialChar);
+  }
+  return charLibrary;
 }
 
 function generatePassword() {
-  passLen = getLength();
-  includeUpCase = getUpperCase();
-  includeLowCase = getLowerCase();
-  includeNumeric = getNumeric();
-  includeSpecialChar = getSpecialChar();
-
-  console.log(passLen + includeUpCase + includeLowCase + includeNumeric + includeSpecialChar);
+  var passLen = getLength();
+  var includeUpCase = getUpperCase();
+  var includeLowCase = getLowerCase();
+  var includeNumeric = getNumeric();
+  var includeSpecialChar = getSpecialChar();
 
   // if no password options are select
   // ask the user to restart the process
@@ -157,7 +140,14 @@ function generatePassword() {
     }
   }
 
-  // generate
+  // generate the library of characters where the password will be
+  // created from
+  var charLibrary = generateCharacterLibrary(
+    includeLowCase,
+    includeUpCase,
+    includeNumeric,
+    includeSpecialChar
+  );
 }
 
 // Write password to the #password input
